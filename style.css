@@ -11,7 +11,44 @@
     --danger: #ef4444;
     --border: #e2e8f0;
 }
+.product-info{
+    display:flex;
+    gap:12px;
+    align-items:center;
+}
 
+.product-image{
+    width:50px;
+    height:50px;
+    border-radius:10px;
+    object-fit:cover;
+}
+
+.product-name{
+    font-weight:700;
+}
+
+.product-sku{
+    color:var(--muted);
+    font-size:.85rem;
+}
+
+.edit{
+    background:#f59e0b;
+}
+
+.delete{
+    background:#dc2626;
+}
+
+.header-actions{
+    display:flex;
+    gap:10px;
+}
+
+.chart-card{
+    margin-bottom:30px;
+}
 * {
     margin: 0;
     padding: 0;
