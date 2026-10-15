@@ -382,6 +382,84 @@ tbody tr:hover {
         white-space: nowrap;
     }
 }
+    .section-title{
+    font-size:1.5rem;
+    font-weight:700;
+    margin-bottom:20px;
+}
+
+.facebook-section{
+    margin-bottom:35px;
+}
+
+.facebook-grid{
+    display:grid;
+    gap:20px;
+    grid-template-columns:
+    repeat(auto-fit,minmax(280px,1fr));
+}
+
+.facebook-card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:var(--shadow);
+    transition:.25s;
+}
+
+.facebook-card:hover{
+    transform:translateY(-5px);
+}
+
+.facebook-card img{
+    width:100%;
+    height:200px;
+    object-fit:cover;
+}
+
+.facebook-content{
+    padding:20px;
+}
+
+.facebook-content h3{
+    margin-bottom:12px;
+}
+
+.listing-price{
+    font-size:1.3rem;
+    font-weight:800;
+    margin-bottom:12px;
+}
+
+.listing-meta{
+    margin-top:12px;
+    color:var(--muted);
+    font-size:.9rem;
+}
+
+.status{
+    display:inline-block;
+    padding:8px 14px;
+    border-radius:999px;
+    font-weight:600;
+    font-size:.85rem;
+}
+
+.posted{
+    background:rgba(34,197,94,.15);
+    color:#22c55e;
+}
+
+.draft{
+    background:rgba(245,158,11,.15);
+    color:#f59e0b;
+}
+
+.sold{
+    background:rgba(59,130,246,.15);
+    color:#3b82f6;
+}
 </style>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -563,6 +641,89 @@ tbody tr:hover {
                 <p>
                     Ends in 2 Days
                 </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+    <div class="facebook-section">
+
+    <h2 class="section-title">
+        Facebook Marketplace Listings
+    </h2>
+
+    <div class="facebook-grid">
+
+        <div class="facebook-card">
+
+            <img src="https://picsum.photos/300/200?10">
+
+            <div class="facebook-content">
+
+                <h3>Vintage Chair</h3>
+
+                <div class="listing-price">
+                    $125
+                </div>
+
+                <span class="status posted">
+                    Posted
+                </span>
+
+                <div class="listing-meta">
+                    1,245 Views
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="facebook-card">
+
+            <img src="https://picsum.photos/300/200?11">
+
+            <div class="facebook-content">
+
+                <h3>Antique Desk</h3>
+
+                <div class="listing-price">
+                    $425
+                </div>
+
+                <span class="status draft">
+                    Draft
+                </span>
+
+                <div class="listing-meta">
+                    Not Published
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="facebook-card">
+
+            <img src="https://picsum.photos/300/200?12">
+
+            <div class="facebook-content">
+
+                <h3>Industrial Lamp</h3>
+
+                <div class="listing-price">
+                    $75
+                </div>
+
+                <span class="status sold">
+                    Sold
+                </span>
+
+                <div class="listing-meta">
+                    Buyer Picked Up
+                </div>
 
             </div>
 
