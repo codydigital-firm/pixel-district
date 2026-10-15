@@ -1,20 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>WarehousePro Dashboard</title>
-
-<link rel="stylesheet" href="style.css">
-
-<link
-href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-rel="stylesheet">
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</head>
-
 <body>
 
 <div class="sidebar">
@@ -28,7 +11,7 @@ rel="stylesheet">
         <li>📦 Inventory</li>
         <li>🛒 eBay Auctions</li>
         <li>📱 Facebook Listings</li>
-        <li>📢 Marketing</li>
+        <li>📢 Marketing Center</li>
         <li>📈 Analytics</li>
     </ul>
 
@@ -59,20 +42,315 @@ rel="stylesheet">
 
     </div>
 
+    <!-- KPI CARDS -->
+
     <div class="stats">
 
         <div class="card">
-            <div class="card-label">
-                Total Products
-            </div>
-
-            <div
-                class="card-value"
-                id="totalProducts">
-            </div>
+            <div class="card-label">Total Products</div>
+            <div class="card-value" id="totalProducts">0</div>
         </div>
 
         <div class="card">
-            <div class="card-label">
-                Inventory Units
-      
+            <div class="card-label">Inventory Units</div>
+            <div class="card-value" id="totalStock">0</div>
+        </div>
+
+        <div class="card">
+            <div class="card-label">Active Auctions</div>
+            <div class="card-value">14</div>
+        </div>
+
+        <div class="card">
+            <div class="card-label">Monthly Revenue</div>
+            <div class="card-value">$12.4K</div>
+        </div>
+
+    </div>
+
+    <!-- CHART -->
+
+    <div class="card chart-card">
+
+        <div class="card-label">
+            Revenue Growth
+        </div>
+
+        <canvas id="salesChart"></canvas>
+
+    </div>
+
+    <!-- PRODUCT FORM -->
+
+    <div class="form-section">
+
+        <div class="form-title">
+            Add Inventory Item
+        </div>
+
+        <div class="form-grid">
+
+            <input
+                id="sku"
+                placeholder="SKU">
+
+            <input
+                id="name"
+                placeholder="Product Name">
+
+            <input
+                id="qty"
+                type="number"
+                placeholder="Quantity">
+
+            <input
+                id="price"
+                type="number"
+                placeholder="Price">
+
+        </div>
+
+    </div>
+
+    <!-- INVENTORY TABLE -->
+
+    <div class="table-card">
+
+        <table>
+
+            <thead>
+
+            <tr>
+
+                <th>Product</th>
+                <th>Stock</th>
+                <th>Price</th>
+                <th>Status</th>
+                <th>Actions</th>
+
+            </tr>
+
+            </thead>
+
+            <tbody id="inventoryTable">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <!-- EBAY SECTION -->
+
+    <div class="auctions-section">
+
+        <h2 class="section-title">
+            Active eBay Auctions
+        </h2>
+
+        <div class="auction-grid">
+
+            <div class="auction-card">
+
+                https://picsum.photos/400/250?1
+
+                <div class="auction-content">
+
+                    <h3>Vintage Chair</h3>
+
+                    <p><strong>Current Bid:</strong> $125</p>
+
+                    <p><strong>Watchers:</strong> 14</p>
+
+                    <p><strong>Ends:</strong> 6 Hours</p>
+
+                </div>
+
+            </div>
+
+            <div class="auction-card">
+
+                https://picsum.photos/400/250?2
+
+                <div class="auction-content">
+
+                    <h3>Industrial Lamp</h3>
+
+                    <p><strong>Current Bid:</strong> $72</p>
+
+                    <p><strong>Watchers:</strong> 8</p>
+
+                    <p><strong>Ends:</strong> Tomorrow</p>
+
+                </div>
+
+            </div>
+
+            <div class="auction-card">
+
+                https://picsum.photos/400/250?3
+
+                <div class="auction-content">
+
+                    <h3>Antique Desk</h3>
+
+                    <p><strong>Current Bid:</strong> $410</p>
+
+                    <p><strong>Watchers:</strong> 27</p>
+
+                    <p><strong>Ends:</strong> 2 Days</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- FACEBOOK SECTION -->
+
+    <div class="facebook-section">
+
+        <h2 class="section-title">
+
+            Facebook Marketplace Listings
+
+        </h2>
+
+        <div class="facebook-grid">
+
+            <div class="facebook-card">
+
+                https://picsum.photos/400/250?10
+
+                <div class="facebook-content">
+
+                    <h3>Vintage Chair</h3>
+
+                    <div class="listing-price">
+                        $125
+                    </div>
+
+                    <span class="status posted">
+
+                        Posted
+
+                    </span>
+
+                    <div class="listing-meta">
+
+                        1,245 Views
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="facebook-card">
+
+                https://picsum.photos/400/250?11
+
+                <div class="facebook-content">
+
+                    <h3>Antique Desk</h3>
+
+                    <div class="listing-price">
+                        $425
+                    </div>
+
+                    <span class="status draft">
+
+                        Draft
+
+                    </span>
+
+                    <div class="listing-meta">
+
+                        Awaiting Approval
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="facebook-card">
+
+                https://picsum.photos/400/250?12
+
+                <div class="facebook-content">
+
+                    <h3>Industrial Lamp</h3>
+
+                    <div class="listing-price">
+                        $75
+                    </div>
+
+                    <span class="status sold">
+
+                        Sold
+
+                    </span>
+
+                    <div class="listing-meta">
+
+                        Buyer Picked Up
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- MULTI PLATFORM STATUS -->
+
+    <div class="card" style="margin-top:30px;">
+
+        <h2 style="margin-bottom:20px;">
+            Marketplace Sync
+        </h2>
+
+        <table>
+
+            <tr>
+
+                <td>Vintage Chair</td>
+                <td>✅ eBay</td>
+                <td>✅ Facebook</td>
+                <td>✅ Website</td>
+
+            </tr>
+
+            <tr>
+
+                <td>Industrial Lamp</td>
+                <td>✅ eBay</td>
+                <td>✅ Facebook</td>
+                <td>❌ Website</td>
+
+            </tr>
+
+            <tr>
+
+                <td>Antique Desk</td>
+                <td>✅ eBay</td>
+                <td>📝 Draft</td>
+                <td>✅ Website</td>
+
+            </tr>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+
+</body>
