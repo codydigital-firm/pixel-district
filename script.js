@@ -1,3 +1,18 @@
+let products = [
+{
+    sku:"EB1001",
+    name:"Vintage Chair",
+    qty:10,
+    price:125
+},
+{
+    sku:"EB1002",
+    name:"Industrial Lamp",
+    qty:2,
+    price:70
+}
+];
+
 function renderProducts(){
 
     const table =
@@ -21,8 +36,8 @@ function renderProducts(){
                 <div class="product-info">
 
                     <img
-                    class="product-image"
-                    src="https://picsum.photos/50?random=${index}">
+                    src="https://picsum.photos/50?random=${index}"
+                    class="product-image">
 
                     <div>
 
@@ -45,33 +60,43 @@ function renderProducts(){
             <td>$${product.price}</td>
 
             <td>
+
                 ${
                 product.qty < 5
-                ? "<span class='status-low'>Low Stock</span>"
-                : "<span class='status-good'>In Stock</span>"
+
+                ? `<span class="status-low">
+                    Low Stock
+                   </span>`
+
+                : `<span class="status-good">
+                    In Stock
+                   </span>`
                 }
+
             </td>
 
             <td>
 
                 <button
-                    class="action-btn plus"
-                    onclick="increaseStock(${index})">
+                class="action-btn plus"
+                onclick="increaseStock(${index})">
                     +
                 </button>
 
                 <button
-                    class="action-btn minus"
-                    onclick="decreaseStock(${index})">
-                    −
+                class="action-btn minus"
+                onclick="decreaseStock(${index})">
+                    -
                 </button>
 
                 <button
-                    class="action-btn edit"
-                    onclick="editProduct(${index})">
+                class="action-btn edit"
+                onclick="editProduct(${index})">
                     ✏️
                 </button>
 
+                <button
+                class="action-btn delete"
                 onclick="deleteProduct(${index})">
                     🗑️
                 </button>
@@ -90,81 +115,138 @@ function renderProducts(){
         "totalStock"
     ).innerText = totalStock;
 
+    saveProducts();
+}
+
+function saveProducts(){
+
     localStorage.setItem(
         "products",
         JSON.stringify(products)
     );
 }
 
+function loadProducts(){
+
+    const saved =
+    localStorage.getItem("products");
+
+    if(saved){
+
+        products =
+        JSON.parse(saved);
+    }
+}
+
 function addProduct(){
 
     const sku =
-    document.getElementById("sku").value;
+        document.getElementById("sku").value;
 
     const name =
-    document.getElementById("name").value;
+        document.getElementById("name").value;
 
     const qty =
-    Number(document.getElementById("qty").value);
+        Number(
+            document.getElementById("qty").value
+        );
 
     const price =
-    Number(document.getElementById("price").value);
+        Number(
+            document.getElementById("price").value
+        );
 
-    if(!sku || !name) return;
+    if(!sku || !name){
+
+        alert(
+            "Please enter SKU and Name"
+        );
+
+        return;
+    }
 
     products.push({
-        sku,name,qty,price
+
+        sku,
+        name,
+        qty,
+        price
+
     });
 
+    document.getElementById("sku").value = "";
+    document.getElementById("name").value = "";
+    document.getElementById("qty").value = "";
+    document.getElementById("price").value = "";
+
     renderProducts();
 }
 
-function increaseStock(index){
-    products[index].qty++;
-    renderProducts();
-}
+function editProduct(index){
 
-function decreaseStock(index){
-    products[index].qty--;
+    let product =
+        products[index];
+
+    let name =
+        prompt(
+            "Product Name",
+            product.name
+        );
+
+    if(name === null) return;
+
+    let price =
+        prompt(
+            "Product Price",
+            product.price
+        );
+
+    if(price === null) return;
+
+    let qty =
+        prompt(
+            "Quantity",
+            product.qty
+        );
+
+    if(qty === null) return;
+
+    product.name = name;
+    product.price = Number(price);
+    product.qty = Number(qty);
+
     renderProducts();
 }
 
 function deleteProduct(index){
 
-    if(confirm("Delete product?")){
+    const confirmed =
+        confirm(
+            "Delete this product?"
+        );
 
-        products.splice(index,1);
-
-        renderProducts();
+    if(!confirmed){
+        return;
     }
+
+    products.splice(index,1);
+
+    renderProducts();
 }
 
-function editProduct(index){
+function increaseStock(index){
 
-    const product =
-    products[index];
+    products[index].qty++;
 
-    product.name =
-    prompt(
-        "Product Name",
-        product.name
-    ) || product.name;
+    renderProducts();
+}
 
-    product.price =
-    Number(
-        prompt(
-            "Price",
-            product.price
-        )
-    );
+function decreaseStock(index){
 
-    product.qty =
-    Number(
-        prompt(
-            "Quantity",
-            product.qty
-        )
-    );
+    if(products[index].qty > 0){
+
+        products[index].qty--;
+    }
 
     renderProducts();
 }
@@ -175,48 +257,68 @@ function toggleTheme(){
         "dark"
     );
 
-    localStorage.setItem(
-        "theme",
+    const darkMode =
         document.body.classList.contains(
             "dark"
-        )
+        );
+
+    localStorage.setItem(
+        "theme",
+        darkMode
     );
+
+    const btn =
+        document.getElementById(
+            "themeBtn"
+        );
+
+    if(darkMode){
+
+        btn.innerHTML =
+        "☀️ Light Mode";
+
+    }else{
+
+        btn.innerHTML =
+        "🌙 Dark Mode";
+    }
 }
 
 window.onload = () => {
 
-    const savedProducts =
-    localStorage.getItem(
-        "products"
-    );
+    loadProducts();
 
-    if(savedProducts){
-
-        products =
-        JSON.parse(
-            savedProducts
-        );
-    }
+    renderProducts();
 
     if(
         localStorage.getItem(
             "theme"
         ) === "true"
     ){
+
         document.body.classList.add(
             "dark"
         );
+
+        document.getElementById(
+            "themeBtn"
+        ).innerHTML =
+        "☀️ Light Mode";
     }
 
-    renderProducts();
+    const ctx =
+    document.getElementById(
+        "salesChart"
+    );
 
-    new Chart(
-        document.getElementById(
-            "salesChart"
-        ),
-        {
+    if(ctx){
+
+        new Chart(ctx,{
+
             type:"line",
+
             data:{
+
                 labels:[
                     "Jan",
                     "Feb",
@@ -225,20 +327,39 @@ window.onload = () => {
                     "May",
                     "Jun"
                 ],
+
                 datasets:[{
+
                     label:"Revenue",
+
                     data:[
-                        3200,
-                        4500,
-                        6200,
+          6200,
                         8400,
                         9600,
                         12400
                     ],
+
                     borderColor:"#3b82f6",
-                    fill:true
+
+                    backgroundColor:
+                    "rgba(59,130,246,.12)",
+
+                    fill:true,
+
+                    tension:.4
                 }]
+            },
+
+            options:{
+
+                responsive:true,
+
+                plugins:{
+                    legend:{
+                        display:true
+                    }
+                }
             }
-        }
-    );
+        });
+    }
 };
