@@ -1,275 +1,272 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>WarehousePro Dashboard</title>
+    <title>WarehousePro | Inventory Dashboard</title>
+    <meta name="theme-color" content="#0b1120">
 
-<link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-<link
-href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-rel="stylesheet">
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+    <script src="data.js" defer></script>
+    <script src="script.js" defer></script>
 </head>
 
 <body>
+    <aside class="sidebar">
+        <a class="logo" href="#" aria-label="WarehousePro home">
+            <span class="logo-icon">W</span>
+            <span>Warehouse<span class="logo-light">Pro</span></span>
+        </a>
 
-<div class="sidebar">
+        <div class="sidebar-label">WORKSPACE</div>
 
-    <div class="logo">
-        WarehousePro
-    </div>
+        <nav class="menu" aria-label="Main navigation">
+            <a class="active" href="#dashboard"><span class="nav-icon">▦</span> Dashboard</a>
+            <a href="#inventory"><span class="nav-icon">▤</span> Inventory</a>
+            <a href="#auctions"><span class="nav-icon">⚖</span> eBay Auctions</a>
+            <a href="#facebook"><span class="nav-icon">◉</span> Facebook Listings</a>
+            <a href="#marketing"><span class="nav-icon">↗</span> Marketing</a>
+            <a href="#analytics"><span class="nav-icon">▥</span> Analytics</a>
+        </nav>
 
-    <ul class="menu">
-        <li>📊 Dashboard</li>
-        <li>📦 Inventory</li>
-        <li>🛒 eBay Auctions</li>
-        <li>📱 Facebook Listings</li>
-        <li>📢 Marketing</li>
-        <li>📈 Analytics</li>
-    </ul>
-
-</div>
-
-<div class="main">
-
-    <div class="header">
-
-        <h1>Inventory Dashboard</h1>
-
-        <div class="header-actions">
-
-            <button
-                id="themeBtn"
-                class="btn btn-secondary"
-                onclick="toggleTheme()">
-                🌙 Dark Mode
-            </button>
-
-            <button
-                class="btn"
-                onclick="addProduct()">
-                Add Product
-            </button>
-
-        </div>
-
-    </div>
-
-    <div class="stats">
-
-        <div class="card">
-            <div class="card-label">
-                Total Products
-            </div>
-
-            <div
-                class="card-value"
-                id="totalProducts">
+        <div class="sidebar-bottom">
+            <div class="connection-dot"></div>
+            <div>
+                <strong>Local workspace</strong>
+                <small>Prototype environment</small>
             </div>
         </div>
+    </aside>
 
-        <div class="card">
-            <div class="card-label">
-                Inventory Units
+    <main class="main" id="dashboard">
+        <header class="header">
+            <div>
+                <div class="eyebrow">OVERVIEW / WAREHOUSE</div>
+                <h1>Inventory dashboard</h1>
+                <p class="page-subtitle">Manage stock, track listings, and keep everything moving.</p>
             </div>
 
-            <div
-                class="card-value"
-                id="totalStock">
+            <div class="header-actions">
+                <button id="themeBtn" class="btn btn-secondary" type="button" onclick="toggleTheme()">
+                    ☾ <span>Dark mode</span>
+                </button>
+                <button class="btn btn-primary" type="button" onclick="addProduct()">
+                    <span>＋</span> Add product
+                </button>
             </div>
-        </div>
+        </header>
 
-        <div class="card">
-            <div class="card-label">
-                Active Auctions
-            </div>
-
-            <div class="card-value">
-                14
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-label">
-                Monthly Revenue
-            </div>
-
-            <div class="card-value">
-                $12.4K
-            </div>
-        </div>
-
-    </div>
-
-    <div class="card chart-card">
-        <canvas id="salesChart"></canvas>
-    </div>
-
-    <div class="form-section">
-
-        <div class="form-title">
-            Add Inventory Item
-        </div>
-
-        <div class="form-grid">
-
-            <input
-                id="sku"
-                placeholder="SKU">
-
-            <input
-                id="name"
-                placeholder="Product Name">
-
-            <input
-                id="qty"
-                placeholder="Quantity"
-                type="number">
-
-            <input
-                id="price"
-                placeholder="Price"
-                type="number">
-
-        </div>
-
-    </div>
-
-    <div class="table-card">
-
-        <table>
-
-            <thead>
-
-                <tr>
-                    <th>Product</th>
-                    <th>Stock</th>
-                    <th>Price</th>
-                    <th>Status</th>
-                    <th>Actions</th>
-                </tr>
-
-            </thead>
-
-            <tbody id="inventoryTable">
-            </tbody>
-
-        </table>
-
-    </div>
-
-    <div class="auctions-section">
-
-        <h2 class="section-title">
-            Active eBay Auctions
-        </h2>
-
-        <div class="auction-grid">
-
-            <div class="auction-card">
-
-                <img
-                src="https://picsum.photos/300/200?1">
-
-                <div class="auction-content">
-
-                    <h3>Vintage Chair</h3>
-
-                    <p>Current Bid: $125</p>
-
-                    <p>14 Watchers</p>
-
-                    <p>Ends in 6 Hours</p>
-
+        <section class="stats" aria-label="Inventory statistics">
+            <article class="stat-card">
+                <div class="stat-top">
+                    <span class="stat-label">Total products</span>
+                    <span class="stat-icon blue">▤</span>
                 </div>
+                <div class="card-value" id="totalProducts">0</div>
+                <div class="stat-foot">Unique inventory items</div>
+            </article>
 
-            </div>
-
-            <div class="auction-card">
-
-                <img
-                src="https://picsum.photos/300/200?2">
-
-                <div class="auction-content">
-
-                    <h3>Antique Desk</h3>
-
-                    <p>Current Bid: $410</p>
-
-                    <p>27 Watchers</p>
-
-                    <p>Ends Tomorrow</p>
-
+            <article class="stat-card">
+                <div class="stat-top">
+                    <span class="stat-label">Inventory units</span>
+                    <span class="stat-icon purple">▦</span>
                 </div>
+                <div class="card-value" id="totalStock">0</div>
+                <div class="stat-foot">Units currently in stock</div>
+            </article>
 
+            <article class="stat-card">
+                <div class="stat-top">
+                    <span class="stat-label">Active auctions</span>
+                    <span class="stat-icon orange">⚖</span>
+                </div>
+                <div class="card-value">14</div>
+                <div class="stat-foot"><span class="status posted">Example data</span></div>
+            </article>
+
+            <article class="stat-card">
+                <div class="stat-top">
+                    <span class="stat-label">Monthly revenue</span>
+                    <span class="stat-icon green">$</span>
+                </div>
+                <div class="card-value">$12.4K</div>
+                <div class="stat-foot">Illustrative revenue figure</div>
+            </article>
+        </section>
+
+        <section class="panel chart-panel" id="analytics">
+            <div class="section-heading">
+                <div>
+                    <h2>Sales performance</h2>
+                    <p>Example sales activity over time</p>
+                </div>
+                <span class="panel-tag">DEMO DATA</span>
+            </div>
+            <div class="chart-wrap">
+                <canvas id="salesChart" aria-label="Sales performance chart"></canvas>
+            </div>
+        </section>
+
+        <section class="panel form-section" id="add-inventory">
+            <div class="section-heading">
+                <div>
+                    <h2>Add inventory item</h2>
+                    <p>Enter the details to add a product to your stock.</p>
+                </div>
+                <span class="section-symbol">＋</span>
             </div>
 
-        </div>
+            <form id="productForm" class="form-grid">
+                <label>
+                    <span>SKU</span>
+                    <input id="sku" name="sku" placeholder="e.g. WH-1001" required>
+                </label>
 
-    </div>
+                <label>
+                    <span>Product name</span>
+                    <input id="name" name="name" placeholder="Enter product name" required>
+                </label>
 
-    <div class="facebook-section">
+                <label>
+                    <span>Quantity</span>
+                    <input id="qty" name="qty" type="number" min="0" step="1" placeholder="0" required>
+                </label>
 
-        <h2 class="section-title">
-            Facebook Marketplace
-        </h2>
+                <label>
+                    <span>Unit price ($)</span>
+                    <input id="price" name="price" type="number" min="0" step="0.01" placeholder="0.00" required>
+                </label>
 
-        <div class="facebook-grid">
+                <div class="form-footer">
+                    <p>Use a unique SKU for each product.</p>
+                    <button class="btn btn-primary" type="submit">Save product →</button>
+                </div>
+            </form>
+        </section>
 
-            <div class="facebook-card">
+        <section class="panel table-card" id="inventory">
+            <div class="section-heading inventory-heading">
+                <div>
+                    <h2>Inventory</h2>
+                    <p>Review current stock and product prices.</p>
+                </div>
+                <span class="live-label"><span></span> Local inventory</span>
+            </div>
 
-                <img
-                src="https://picsum.photos/300/200?10">
+            <div class="table-scroll">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Stock</th>
+                            <th>Unit price</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="inventoryTable"></tbody>
+                </table>
+            </div>
+        </section>
 
-                <div class="facebook-content">
+        <section class="content-section" id="auctions">
+            <div class="section-heading">
+                <div>
+                    <h2>Active eBay auctions</h2>
+                    <p>Example listings for the prototype.</p>
+                </div>
+                <a class="text-link" href="https://www.ebay.com/sh/lst/active" target="_blank" rel="noopener noreferrer">View eBay listings ↗</a>
+            </div>
 
-                    <h3>Vintage Chair</h3>
-
-                    <div class="listing-price">
-                        $125
+            <div class="auction-grid">
+                <article class="listing-card auction-card">
+                    <div class="listing-image image-chair">
+                        <span>AUCTION</span>
+                        <span class="product-emoji">▤</span>
                     </div>
-
-                    <span class="status posted">
-                        Posted
-                    </span>
-
-                </div>
-
-            </div>
-
-            <div class="facebook-card">
-
-                <img
-                src="https://picsum.photos/300/200?11">
-
-                <div class="facebook-content">
-
-                    <h3>Industrial Lamp</h3>
-
-                    <div class="listing-price">
-                        $70
+                    <div class="listing-content auction-content">
+                        <div class="listing-category">FURNITURE</div>
+                        <h3>Vintage chair</h3>
+                        <div class="listing-price">$125.00</div>
+                        <div class="listing-meta"><span>14 watchers</span><span>Ends in 6 hours</span></div>
                     </div>
+                </article>
 
-                    <span class="status sold">
-                        Sold
-                    </span>
+                <article class="listing-card auction-card">
+                    <div class="listing-image image-desk">
+                        <span>AUCTION</span>
+                        <span class="product-emoji">▤</span>
+                    </div>
+                    <div class="listing-content auction-content">
+                        <div class="listing-category">FURNITURE</div>
+                        <h3>Antique desk</h3>
+                        <div class="listing-price">$410.00</div>
+                        <div class="listing-meta"><span>27 watchers</span><span>Ends tomorrow</span></div>
+                    </div>
+                </article>
+            </div>
+        </section>
 
+        <section class="content-section" id="facebook">
+            <div class="section-heading">
+                <div>
+                    <h2>Facebook Marketplace</h2>
+                    <p>Example listings and their current status.</p>
                 </div>
-
+                <a class="text-link" href="https://www.facebook.com/marketplace/" target="_blank" rel="noopener noreferrer">Open Marketplace ↗</a>
             </div>
 
-        </div>
+            <div class="facebook-grid">
+                <article class="listing-card facebook-card">
+                    <div class="listing-image image-chair">
+                        <span class="product-emoji">▤</span>
+                    </div>
+                    <div class="listing-content facebook-content">
+                        <div class="listing-category">FURNITURE</div>
+                        <h3>Vintage chair</h3>
+                        <div class="listing-bottom">
+                            <span class="listing-price">$125.00</span>
+                            <span class="status posted">Posted</span>
+                        </div>
+                    </div>
+                </article>
 
-    </div>
+                <article class="listing-card facebook-card">
+                    <div class="listing-image image-lamp">
+                        <span class="product-emoji">◉</span>
+                    </div>
+                    <div class="listing-content facebook-content">
+                        <div class="listing-category">LIGHTING</div>
+                        <h3>Industrial lamp</h3>
+                        <div class="listing-bottom">
+                            <span class="listing-price">$70.00</span>
+                            <span class="status sold">Sold</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
 
-</div>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="data.js" defer></script>
-<script src="script.js" defer></script>
+        <section class="panel marketing-panel" id="marketing">
+            <div class="marketing-icon">↗</div>
+            <div>
+                <h2>Marketing &amp; warehouse traffic</h2>
+                <p>Plan promotions, share listings, and direct customers to the warehouse.</p>
+                <small>Social publishing and advertising require platform account access and API integration.</small>
+            </div>
+        </section>
 
+        <footer class="footer">
+            <span>WarehousePro <span class="footer-muted">· Inventory management prototype</span></span>
+            <span>Demo figures are not live business data.</span>
+        </footer>
+    </main>
 </body>
 </html>
