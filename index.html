@@ -1,3 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>WarehousePro Dashboard</title>
+
+<link rel="stylesheet" src="style.css">
+
+<link
+href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
 <body>
 
 <div class="sidebar">
@@ -11,7 +28,7 @@
         <li>📦 Inventory</li>
         <li>🛒 eBay Auctions</li>
         <li>📱 Facebook Listings</li>
-        <li>📢 Marketing Center</li>
+        <li>📢 Marketing</li>
         <li>📈 Analytics</li>
     </ul>
 
@@ -42,45 +59,55 @@
 
     </div>
 
-    <!-- KPI CARDS -->
-
     <div class="stats">
 
         <div class="card">
-            <div class="card-label">Total Products</div>
-            <div class="card-value" id="totalProducts">0</div>
+            <div class="card-label">
+                Total Products
+            </div>
+
+            <div
+                class="card-value"
+                id="totalProducts">
+            </div>
         </div>
 
         <div class="card">
-            <div class="card-label">Inventory Units</div>
-            <div class="card-value" id="totalStock">0</div>
+            <div class="card-label">
+                Inventory Units
+            </div>
+
+            <div
+                class="card-value"
+                id="totalStock">
+            </div>
         </div>
 
         <div class="card">
-            <div class="card-label">Active Auctions</div>
-            <div class="card-value">14</div>
+            <div class="card-label">
+                Active Auctions
+            </div>
+
+            <div class="card-value">
+                14
+            </div>
         </div>
 
         <div class="card">
-            <div class="card-label">Monthly Revenue</div>
-            <div class="card-value">$12.4K</div>
+            <div class="card-label">
+                Monthly Revenue
+            </div>
+
+            <div class="card-value">
+                $12.4K
+            </div>
         </div>
 
     </div>
-
-    <!-- CHART -->
 
     <div class="card chart-card">
-
-        <div class="card-label">
-            Revenue Growth
-        </div>
-
         <canvas id="salesChart"></canvas>
-
     </div>
-
-    <!-- PRODUCT FORM -->
 
     <div class="form-section">
 
@@ -100,19 +127,17 @@
 
             <input
                 id="qty"
-                type="number"
-                placeholder="Quantity">
+                placeholder="Quantity"
+                type="number">
 
             <input
                 id="price"
-                type="number"
-                placeholder="Price">
+                placeholder="Price"
+                type="number">
 
         </div>
 
     </div>
-
-    <!-- INVENTORY TABLE -->
 
     <div class="table-card">
 
@@ -120,27 +145,22 @@
 
             <thead>
 
-            <tr>
-
-                <th>Product</th>
-                <th>Stock</th>
-                <th>Price</th>
-                <th>Status</th>
-                <th>Actions</th>
-
-            </tr>
+                <tr>
+                    <th>Product</th>
+                    <th>Stock</th>
+                    <th>Price</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
 
             </thead>
 
             <tbody id="inventoryTable">
-
             </tbody>
 
         </table>
 
     </div>
-
-    <!-- EBAY SECTION -->
 
     <div class="auctions-section">
 
@@ -152,35 +172,18 @@
 
             <div class="auction-card">
 
-                https://picsum.photos/400/250?1
+                <img
+                src="https://picsum.photos/300/200?1">
 
                 <div class="auction-content">
 
                     <h3>Vintage Chair</h3>
 
-                    <p><strong>Current Bid:</strong> $125</p>
+                    <p>Current Bid: $125</p>
 
-                    <p><strong>Watchers:</strong> 14</p>
+                    <p>14 Watchers</p>
 
-                    <p><strong>Ends:</strong> 6 Hours</p>
-
-                </div>
-
-            </div>
-
-            <div class="auction-card">
-
-                https://picsum.photos/400/250?2
-
-                <div class="auction-content">
-
-                    <h3>Industrial Lamp</h3>
-
-                    <p><strong>Current Bid:</strong> $72</p>
-
-                    <p><strong>Watchers:</strong> 8</p>
-
-                    <p><strong>Ends:</strong> Tomorrow</p>
+                    <p>Ends in 6 Hours</p>
 
                 </div>
 
@@ -188,17 +191,18 @@
 
             <div class="auction-card">
 
-                https://picsum.photos/400/250?3
+                <img
+                src="https://picsum.photos/300/200?2">
 
                 <div class="auction-content">
 
                     <h3>Antique Desk</h3>
 
-                    <p><strong>Current Bid:</strong> $410</p>
+                    <p>Current Bid: $410</p>
 
-                    <p><strong>Watchers:</strong> 27</p>
+                    <p>27 Watchers</p>
 
-                    <p><strong>Ends:</strong> 2 Days</p>
+                    <p>Ends Tomorrow</p>
 
                 </div>
 
@@ -208,21 +212,18 @@
 
     </div>
 
-    <!-- FACEBOOK SECTION -->
-
     <div class="facebook-section">
 
         <h2 class="section-title">
-
-            Facebook Marketplace Listings
-
+            Facebook Marketplace
         </h2>
 
         <div class="facebook-grid">
 
             <div class="facebook-card">
 
-                https://picsum.photos/400/250?10
+                <img
+                src="https://picsum.photos/300/200?10">
 
                 <div class="facebook-content">
 
@@ -233,16 +234,8 @@
                     </div>
 
                     <span class="status posted">
-
                         Posted
-
                     </span>
-
-                    <div class="listing-meta">
-
-                        1,245 Views
-
-                    </div>
 
                 </div>
 
@@ -250,55 +243,20 @@
 
             <div class="facebook-card">
 
-                https://picsum.photos/400/250?11
-
-                <div class="facebook-content">
-
-                    <h3>Antique Desk</h3>
-
-                    <div class="listing-price">
-                        $425
-                    </div>
-
-                    <span class="status draft">
-
-                        Draft
-
-                    </span>
-
-                    <div class="listing-meta">
-
-                        Awaiting Approval
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="facebook-card">
-
-                https://picsum.photos/400/250?12
+                <img
+                src="https://picsum.photos/300/200?11">
 
                 <div class="facebook-content">
 
                     <h3>Industrial Lamp</h3>
 
                     <div class="listing-price">
-                        $75
+                        $70
                     </div>
 
                     <span class="status sold">
-
                         Sold
-
                     </span>
-
-                    <div class="listing-meta">
-
-                        Buyer Picked Up
-
-                    </div>
 
                 </div>
 
@@ -308,49 +266,9 @@
 
     </div>
 
-    <!-- MULTI PLATFORM STATUS -->
-
-    <div class="card" style="margin-top:30px;">
-
-        <h2 style="margin-bottom:20px;">
-            Marketplace Sync
-        </h2>
-
-        <table>
-
-            <tr>
-
-                <td>Vintage Chair</td>
-                <td>✅ eBay</td>
-                <td>✅ Facebook</td>
-                <td>✅ Website</td>
-
-            </tr>
-
-            <tr>
-
-                <td>Industrial Lamp</td>
-                <td>✅ eBay</td>
-                <td>✅ Facebook</td>
-                <td>❌ Website</td>
-
-            </tr>
-
-            <tr>
-
-                <td>Antique Desk</td>
-                <td>✅ eBay</td>
-                <td>📝 Draft</td>
-                <td>✅ Website</td>
-
-            </tr>
-
-        </table>
-
-    </div>
-
 </div>
 
 
 
 </body>
+</html>
